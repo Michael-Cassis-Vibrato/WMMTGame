@@ -35,7 +35,6 @@ def restart():
         else: 
             playagain = 0
 
-
 def carattr():
     global caraccl
     global cartop
@@ -47,18 +46,18 @@ def carattr():
     print()
     restart()
 
-
 def carupgrademode():
     global caraccl
     global carhand
     global cartop
     carupgrade = 0
     while carupgrade < 1:
-        print("Now we've moved on from your first race, it's time to upgrade!")
+        print("Now we've completed your race, it's time to upgrade!")
         print("Which stat would you like to upgrade from?")
         print('Acceleration - Option 1')
         print('Top Speed - Option 2')
         print('Handling - Option 3')
+        print('Change nothing - option 4')
         carmodup = input("What option will you upgrade??:")
         if carmodup == '1':
             caraccl = caraccl + 10
@@ -69,47 +68,22 @@ def carupgrademode():
         elif carmodup == '3':
             carhand = carhand + 10
             carupgrade = 1
+        elif carmodup == '4':
+            carupgrade = 1
         else:
             print('That is not a valid option, please try again')
             carupgrade = 0
         print()
     carattr()
 
-
-
 def C1outcourse():
+    global courselength
+    courselength = 10000
     racechoiceC1out = 0
     while racechoiceC1out <1:
             print("Lets do this, C1 outwards! GO!")
             print()
-            c1outlength = 10000
-            traffic = random.randint(1,10)
-            time.sleep(1)
-            if traffic <= 2:
-                print("That's a lot of traffic!")
-            elif traffic <=6:
-                print('There is some traffic about...')
-            elif traffic <=11:
-                print('No traffic! Easy run!')
-            cartopadj = (cartop + traffic)
-            caraccladj = (caraccl + traffic)
-            carhandadj = (carhand +traffic)
-            carmod = cartopadj + carhandadj + caraccladj
-            #print(carmod)
-            time.sleep(1)
-            print('.')
-            time.sleep(1)
-            print('..')
-            time.sleep(1)
-            print('...')
-            time.sleep(1)
-            print('....')
-            time.sleep(1)
-            timec1 = (c1outlength/carmod*(25))/3.6
-            timec1a = (str(datetime.timedelta(seconds=timec1)))
-            print('It took you ' + timec1a + ' to complete c1 outwards')
-            time.sleep(1)
-            print()
+            trafficsim()
             racechoiceq = 0
             while racechoiceq < 1:
                 print('Would you like to race C1 outwards again?')
@@ -131,37 +105,13 @@ def C1outcourse():
                     print()
 
 def C1incourse():
+    global courselength
     racechoiceC1out = 0
+    courselength = 11000
     while racechoiceC1out <1:
             print("Alright, let's do the C1 inwards course!")
             print()
-            c1inlength = 11000
-            traffic = random.randint(1,12)
-            time.sleep(1)
-            if traffic <= 4:
-                print("Nani?! Traffic!!!")
-            elif traffic <=7:
-                print('There is some traffic about...')
-            elif traffic <=13:
-                print('No traffic! No worry!!')
-            cartopadj = (cartop + traffic)
-            caraccladj = (caraccl + traffic)
-            carhandadj = (carhand +traffic)
-            carmod = cartopadj + carhandadj + caraccladj
-            time.sleep(1)
-            print('.')
-            time.sleep(1)
-            print('..')
-            time.sleep(1)
-            print('...')
-            time.sleep(1)
-            print('....')
-            time.sleep(1)
-            timec1in = (c1inlength/carmod*(25))/3.6
-            timec1inwards = (str(datetime.timedelta(seconds=timec1in)))
-            print('It took you ' + timec1inwards + ' to complete c1 inwards')
-            time.sleep(1)
-            print()
+            trafficsim()
             racechoiceq = 0
             while racechoiceq < 1:
                 print('Would you like to race C1 inwards again?')
@@ -182,38 +132,14 @@ def C1incourse():
                     racechoiceq = 0
                     print()
 
-
 def wanganeast():
+    global courselength
     racechoice = 0
+    courselength = 15000
     while racechoice <1:
             print("Wangan Eastbound, race to 300kmph!")
             print()
-            wanganelength = 15000
-            traffic = random.randint(10,50)
-            time.sleep(1)
-            if traffic <= 15:
-                print("Nani?! Traffic!!!")
-            elif traffic <=30:
-                print('There is some traffic about...')
-            elif traffic <=51:
-                print('No traffic! No worry!!')
-            cartopadj = (cartop + traffic)
-            caraccladj = (caraccl + traffic)
-            carhandadj = (carhand + traffic)
-            carmod = cartopadj + carhandadj + caraccladj
-            time.sleep(1)
-            print('.')
-            time.sleep(1)
-            print('..')
-            time.sleep(1)
-            print('...')
-            time.sleep(1)
-            print('....')
-            time.sleep(1)
-            timewanganeast = (wanganelength/carmod*(25))/3.6
-            timewanganeasttime = (str(datetime.timedelta(seconds=timewanganeast)))
-            print('It took you ' + timewanganeasttime + ' to complete Wangan Eastbound')
-            time.sleep(1)
+            trafficsim()
             print()
             racechoiceq = 0
             while racechoiceq < 1:
@@ -235,26 +161,151 @@ def wanganeast():
                     racechoiceq = 0
                     print()
 
-
-
-        
+def trafficsim():
+    global caraccl
+    global cartop
+    global carhand
+    traffic = random.randint(1,20)
+    time.sleep(1)
+    if traffic <= 8:
+        print("Nani?! Traffic!!!")
+    elif traffic <=16:
+        print('There is some traffic about...')
+    elif traffic <=21:
+        print('No traffic! No worry!!')
+    cartopadj = (cartop + traffic)
+    caraccladj = (caraccl + traffic)
+    carhandadj = (carhand +traffic)
+    carmod = cartopadj + carhandadj + caraccladj
+    time.sleep(.1)
+    print('.')
+    time.sleep(.1)
+    print('..')
+    time.sleep(.1)
+    print('...')
+    time.sleep(.1)
+    print('....')
+    time.sleep(.1)
+    print('...')
+    time.sleep(.1)
+    print('..')
+    time.sleep(.1)
+    print('.')
+    time.sleep(.1)
+    print('..')
+    time.sleep(.1)
+    print('...')
+    time.sleep(.1)
+    print('....')
+    time.sleep(.1)
+    print('...')
+    time.sleep(.1)
+    print('..')
+    time.sleep(.1)
+    print(".")
+    time.sleep(.1)
+    print('.')
+    time.sleep(.1)
+    print('..')
+    time.sleep(.1)
+    print('...')
+    time.sleep(.1)
+    print('....')
+    time.sleep(.1)
+    print('...')
+    time.sleep(.1)
+    print('..')
+    time.sleep(.1)
+    print('.')
+    time.sleep(.1)
+    print('..')
+    time.sleep(.1)
+    print('...')
+    time.sleep(.1)
+    print('....')
+    time.sleep(.1)
+    print('...')
+    time.sleep(.1)
+    print('..')
+    time.sleep(.1)
+    print(".")
+    time.sleep(.1)
+        print('.')
+    time.sleep(.1)
+    print('..')
+    time.sleep(.1)
+    print('...')
+    time.sleep(.1)
+    print('....')
+    time.sleep(.1)
+    print('...')
+    time.sleep(.1)
+    print('..')
+    time.sleep(.1)
+    print('.')
+    time.sleep(.1)
+    print('..')
+    time.sleep(.1)
+    print('...')
+    time.sleep(.1)
+    print('....')
+    time.sleep(.1)
+    print('...')
+    time.sleep(.1)
+    print('..')
+    time.sleep(.1)
+    print(".")
+    time.sleep(.1)
+    print('.')
+    time.sleep(.1)
+    print('..')
+    time.sleep(.1)
+    print('...')
+    time.sleep(.1)
+    print('....')
+    time.sleep(.1)
+    print('...')
+    time.sleep(.1)
+    print('..')
+    time.sleep(.1)
+    print('.')
+    time.sleep(.1)
+    print('..')
+    time.sleep(.1)
+    print('...')
+    time.sleep(.1)
+    print('....')
+    time.sleep(.1)
+    print('...')
+    time.sleep(.1)
+    print('..')
+    time.sleep(.1)
+    print(".")
+    time.sleep(.1)
+    timetrial = (courselength/carmod*(25))/3.6
+    timeconv = (str(datetime.timedelta(seconds=timetrial)))
+    print('It took you ' + timeconv + ' to complete this course!')
+    time.sleep(1)
+    print()
+ 
 
 
 #story start
 print('Welcome to the world of Wangan')
 print('Where dreams begin and end in the road to the fastest in Japan.')
 print('Choose your destiny:')
-time.sleep(1)
+time.sleep(.1)
 print('The Subaru WRX GC8 STI')
-time.sleep(1)
+time.sleep(.1)
 print('The Nissan Skyline GTR34')
-time.sleep(1)
+time.sleep(.1)
 print('The Mistubishi Evoluation 9MR')
-time.sleep(1)
+time.sleep(.1)
 print('and the Toyota AE86 Trueno')
-time.sleep(2)
+time.sleep(.2)
 print()
 
+courselength = 0
 carchoice = 0
 caraccl = 0
 cartop = 0
@@ -301,27 +352,27 @@ while carchoice >= 0:
         carchoice = carchoice + 1
         print()
 print()
-time.sleep(2)        
+time.sleep(.5)        
 print('Okay, and what is the name you wish to race under?')
 Racername = input("Please enter your name: ")
 print()
-time.sleep(1)
+time.sleep(.1)
 print('Alright ' + Racername + ' lets do this!')
-time.sleep(1)
+time.sleep(.1)
 print()
 print('The ' + carname + ' has the following stats')
-time.sleep(1)
+time.sleep(.1)
 print('Accerlation = ' + str(int(caraccl)) + ' out of 100')
-time.sleep(1)
+time.sleep(.1)
 print('Top Speed = '+ str(int(cartop)) + ' out of 100')
-time.sleep(1)
+time.sleep(.1)
 print('Handling = '+ str(int(carhand)) + ' out of 100')
-time.sleep(2)
+time.sleep(.5)
 print()
 print('Let us begin our journey')
-time.sleep(2)
+time.sleep(.5)
 print("I know, let's test your car out and go to C1 outwards!")
-time.sleep(2)
+time.sleep(.5)
 print()
 C1outcourse()
 
