@@ -10,7 +10,6 @@ def endmode():
     print('Created by AkumaInc')
     sys.exit()
 
-
 def restart():
     playagain = 0
     while playagain < 1:
@@ -60,13 +59,13 @@ def carupgrademode():
         print('Change nothing - option 4')
         carmodup = input("What option will you upgrade??:")
         if carmodup == '1':
-            caraccl = caraccl + 10
+            caraccl += 10
             carupgrade = 1
         elif carmodup == '2':
-            cartop = cartop + 10
+            cartop += 10
             carupgrade = 1
         elif carmodup == '3':
-            carhand = carhand + 10
+            carhand += 10
             carupgrade = 1
         elif carmodup == '4':
             carupgrade = 1
@@ -230,7 +229,7 @@ def trafficsim():
     time.sleep(.1)
     print(".")
     time.sleep(.1)
-        print('.')
+    print('.')
     time.sleep(.1)
     print('..')
     time.sleep(.1)
