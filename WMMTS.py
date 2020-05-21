@@ -2,7 +2,7 @@ import time
 import random
 import datetime
 import sys
-#commit test
+#commit test version 2
 
 def endmode():
     print()
